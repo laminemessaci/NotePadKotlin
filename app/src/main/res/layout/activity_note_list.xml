@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/coordinator_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoteListActivity">
+    tools:context=".NoteListActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <RelativeLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".NoteListActivity">
   <androidx.appcompat.widget.Toolbar
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
@@ -19,6 +27,7 @@
       android:layout_below="@+id/toolbar"
       tools:listitem="@layout/item_note"
       />
+</RelativeLayout>
   <com.google.android.material.floatingactionbutton.FloatingActionButton
       android:id="@+id/create_note-fab"
       android:layout_width="wrap_content"
@@ -30,5 +39,7 @@
       android:layout_marginBottom="16dp"
       android:backgroundTint="@color/colorPrimary"
       android:src="@drawable/ic_add_white"
-      tools:visibility="visible" />
-</RelativeLayout>
+      tools:visibility="visible"
+      app:layout_anchor="@id/notes_recycler_view"
+      app:layout_anchorGravity="bottom|right"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

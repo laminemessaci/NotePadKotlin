@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.lamine.notepad.utils.loadNotes
 import com.lamine.notepad.utils.persisteNote
 import kotlinx.android.synthetic.main.activity_note_list.*
@@ -15,6 +17,7 @@ class NoteListActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var notes: MutableList<Note>
     lateinit var adapter: NoteAdapter
+    lateinit var coordinatorLayout: CoordinatorLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,8 @@ class NoteListActivity : AppCompatActivity(), View.OnClickListener {
         val recyclerView = notes_recycler_view
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+        coordinatorLayout = findViewById(R.id.coordinator_layout)
+
     }
 
 
@@ -62,6 +67,8 @@ class NoteListActivity : AppCompatActivity(), View.OnClickListener {
         val note = notes.removeAt(noteIndex)
         com.lamine.notepad.utils.deleteNote(this, note)
         adapter.notifyDataSetChanged()
+
+        Snackbar.make(coordinatorLayout, "${note.title} supprimé", Snackbar.LENGTH_SHORT).show()
     }
 
 
