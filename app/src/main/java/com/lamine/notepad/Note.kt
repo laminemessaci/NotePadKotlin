@@ -2,6 +2,7 @@ package com.lamine.notepad
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.io.Serializable
 
 /**
  *Created by Lamine MESSACI on 09/08/2020.
@@ -9,7 +10,7 @@ import android.os.Parcelable
 data class Note(
     var title: String? = "",
     var text: String? = "",
-    var filename: String? = ""): Parcelable{
+    var filename: String? = ""): Parcelable, Serializable{
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -28,6 +29,7 @@ data class Note(
     }
 
     companion object CREATOR : Parcelable.Creator<Note> {
+        private val serialVersionUUID:Long = 424242424242
         override fun createFromParcel(parcel: Parcel): Note {
             return Note(parcel)
         }

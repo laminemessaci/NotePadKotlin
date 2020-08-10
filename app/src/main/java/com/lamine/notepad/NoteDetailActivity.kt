@@ -3,6 +3,7 @@ package com.lamine.notepad
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -81,7 +82,7 @@ class NoteDetailActivity : AppCompatActivity() {
         note.title = titleView.text.toString()
         note.text = textView.text.toString()
         intent = Intent(ACTION_SAVE_NOTE)
-        intent.putExtra(EXTRA_NOTE, note)
+        intent.putExtra(EXTRA_NOTE, note as Parcelable)
         intent.putExtra(EXTRA_NOTE_INDEX, noteIndex)
         setResult(Activity.RESULT_OK, intent)
         finish()
